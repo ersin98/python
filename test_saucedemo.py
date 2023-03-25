@@ -1,11 +1,16 @@
 from time import sleep
-import time
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.common.action_chains import ActionChains
+import pytest
+from pathlib import Path
+from datetime import date
 #from selenium.common.exceptions import NoSuchElementException
 
-class SaucedemoDefs():
+class Test_SaucedemoDefs():
     def __init__(self,driver):
         self.driver= driver
     def nullNamePassword(self):
@@ -111,7 +116,7 @@ class SaucedemoDefs():
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.maximize_window()
-saucedemoDefs= SaucedemoDefs(driver)
+saucedemoDefs= Test_SaucedemoDefs(driver)
 saucedemoDefs.nullNamePassword()
 saucedemoDefs.nullPassword()
 saucedemoDefs.lockedOutUser()
