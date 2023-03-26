@@ -16,7 +16,7 @@
 	@pytest.xfail(reason="bug")
 	@pytest.xfail(strict=True)
 	@pytest.xfail(run=False)
-- Testin hatalı olmasının beklediğini söyler
-- reason = Hatannın sebebini açıklar
+- Testin hatalı olmasının beklediğini söyler.
+- reason = Hatannın sebebini açıklar.
 - strict = Parametre testlerinin daha sıkı kontrol edilmesini sağlar. Test edilmek isteden davarınışın gerçekten test ediliğinden emin olunmak için kullanılır. 
 - run = Çalıştırılmasını engeller. Özellikle yorumlayıcıyı çökerten xfailing testlerine kullanışlıdır.
