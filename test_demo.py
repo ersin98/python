@@ -8,6 +8,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 import pytest
 from pathlib import Path
 from datetime import date
+import openpyxl
+from constants import globalConstants
 #prefix => ön ek test_
 #postfix
 
@@ -16,7 +18,7 @@ class Test_DemoClass:
     def setup_method(self):
         self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver.maximize_window()
-        self.driver.get("https://www.saucedemo.com/")
+        self.driver.get(globalConstants.URL)
         self.folderPath = str(date.today())
         Path(self.folderPath).mkdir(exist_ok=True)
         #24.03.2023
@@ -36,8 +38,21 @@ class Test_DemoClass:
     # setup -> test_demo2 -> teardown
     def test_demo2(self):
         assert True
+    def getData():
+        excelFile = openpyxl.load_workbook("sata/invalid_login.xlsx")
+        selectedSheet=excelFile["Sheet1"]
+        totalRows=selectedSheet.max_row
+        data=[]
+        for i in range (1, totalRows):
+            username=selectedSheet.cell(i,1)
+            password= selectedSheet.cell(i,2)
+            turpleData=(username,password)
+            data.append(turpleData)
 
-    @pytest.mark.parametrize("username,password",[("1","1") , ("kullaniciadim","sifrem")])
+
+        return [("1","1") , ("kullaniciadim","sifrem"),("kodlamaio","123")]
+
+    @pytest.mark.parametrize("username,password",getData)
     def test_invalid_login(self,username,password):
         self.waitForElementVisible((By.ID,"user-name"))
         usernameInput = self.driver.find_element(By.ID, "user-name")
